@@ -3,6 +3,7 @@ package be.intecbrussel.jdbcdemo.data;
 import be.intecbrussel.jdbcdemo.model.Beer;
 
 import java.sql.*;
+import java.util.List;
 
 public class BeerDaoJdbcImpl implements BeerDao {
 
@@ -45,5 +46,20 @@ public class BeerDaoJdbcImpl implements BeerDao {
     @Override
     public void deleteBeer(Beer beer) {
 
+    }
+
+    @Override
+    public List<Beer> readAllBeers() {
+        return null;
+    }
+
+    @Override
+    public List<Beer> readAllBeersHavingAlcoholLowerThan(double maxAlcohol) {
+        return null;
+    }
+
+    @Override
+    public List<Beer> readAllBeersHavingStockHigherThan(int minimumStock) {
+        return null;
     }
 }

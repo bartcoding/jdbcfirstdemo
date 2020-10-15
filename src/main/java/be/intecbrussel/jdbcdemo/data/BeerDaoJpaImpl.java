@@ -6,6 +6,7 @@ import be.intecbrussel.jdbcdemo.model.Beer;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import java.util.List;
 
 public class BeerDaoJpaImpl implements BeerDao {
 private EntityManagerFactory emf= EntityManagerFactoryProvider.getInstance().getEmf();
@@ -58,11 +59,46 @@ private EntityManagerFactory emf= EntityManagerFactoryProvider.getInstance().get
 //skip for now
     @Override
     public void updateBeer(Beer beer) {
+        EntityManager entityManager =null;
+        try {
+             entityManager = emf.createEntityManager();
+             EntityTransaction transaction = entityManager.getTransaction();
+             transaction.begin();
+             Beer beerInPersistenceContext = entityManager.find(Beer.class, beer.getId());
+             beerInPersistenceContext.setBeerName(beer.getBeerName());
+             beerInPersistenceContext.setStock(beer.getStock());
+             beerInPersistenceContext.setPrice(beer.getPrice());
+             beerInPersistenceContext.setAlcoholPercentage(beer.getAlcoholPercentage());
+             transaction.commit();
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
+        finally {
+            if (entityManager!= null){
+                entityManager.close();
+            }
+        }
 
     }
 //skip for now
     @Override
     public void deleteBeer(Beer beer) {
 
+    }
+
+    @Override
+    public List<Beer> readAllBeers() {
+        return null;
+    }
+
+    @Override
+    public List<Beer> readAllBeersHavingAlcoholLowerThan(double maxAlcohol) {
+        return null;
+    }
+
+    @Override
+    public List<Beer> readAllBeersHavingStockHigherThan(int minimumStock) {
+        return null;
     }
 }
