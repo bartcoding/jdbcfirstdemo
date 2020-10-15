@@ -1,15 +1,23 @@
 package be.intecbrussel.jdbcdemo.model;
 
+import javax.persistence.*;
 import java.util.Objects;
-
+@Entity
+@Table(name = "beers")
 public class Beer {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name = "Name")
     private String beerName;
+    @Column(name = "Alcohol")
     private double alcoholPercentage;
+    @Column(name = "Price")
     private double price;
+    @Column(name ="Stock")
     private int stock;
+
 
     public Beer() {
     }

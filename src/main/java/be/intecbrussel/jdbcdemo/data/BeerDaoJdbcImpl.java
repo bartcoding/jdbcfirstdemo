@@ -5,14 +5,14 @@ import be.intecbrussel.jdbcdemo.model.Beer;
 import java.sql.*;
 
 public class BeerDaoJdbcImpl implements BeerDao {
+
+    public static final String CONNECTIONSTRING = "jdbc:mysql://localhost:3306/beersdb";
+    public static final String USERNAME = "root";
+    public static final String PASSWORD = "root";
     @Override
     public void createBeer(Beer beer) {
-        String connectionString = "jdbc:mysql://localhost:3306/beersdb";
-        String username = "root";
-        String password = "root";
 
-
-        try (Connection connection = DriverManager.getConnection(connectionString, username, password)) {
+        try (Connection connection = DriverManager.getConnection(CONNECTIONSTRING, USERNAME, PASSWORD)) {
             // ask for a statement
             PreparedStatement statement = connection.prepareStatement("insert into beers(name,alcohol,Price,Stock) value (?,?,?,? )");
             statement.setString(1,beer.getBeerName());
