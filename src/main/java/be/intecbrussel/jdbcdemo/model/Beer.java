@@ -18,6 +18,13 @@ public class Beer {
     @Column(name ="Stock")
     private int stock;
 
+    @ManyToOne
+    @JoinColumn(name = "BrewerId")
+    private Brewer brewer;
+
+    @ManyToOne
+    @JoinColumn(name = "CategoryId")
+    private Category category;
 
     public Beer() {
     }
@@ -68,11 +75,34 @@ public class Beer {
     public void setStock(int stock) {
         this.stock = stock;
     }
-    @Override
-    public String toString(){
-        return " Beer with: id:" +id +", Beername = " + beerName+", Alcoholprecentage = "+ alcoholPercentage
-                + ", Price = " + price + ", Stock = " +stock;
 
+    public Brewer getBrewer() {
+        return brewer;
+    }
+
+    public void setBrewer(Brewer brewer) {
+        this.brewer = brewer;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "Beer{" +
+                "id=" + id +
+                ", beerName='" + beerName + '\'' +
+                ", alcoholPercentage=" + alcoholPercentage +
+                ", price=" + price +
+                ", stock=" + stock +
+                ", brewer=" + brewer +
+                ", category=" + category +
+                '}';
     }
 
     @Override

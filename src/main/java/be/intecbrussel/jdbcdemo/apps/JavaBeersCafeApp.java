@@ -15,13 +15,11 @@ public class JavaBeersCafeApp {
 
     public static void main(String[] args){
 
-        Beer beer = new Beer("primero hibernato", 11.1,15,72);
+
 
         BeerDao beerDao = new BeerDaoJpaImpl();
-
-        beerDao.createBeer(beer);
-        System.out.println(beerDao.readBeer(beer.getId()));
-
+        Beer beer = beerDao.readBeer(1501);
+        beer.getBrewer().getBeerList().stream().forEach(System.out::println);
     }
 
 

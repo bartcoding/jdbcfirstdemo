@@ -64,11 +64,15 @@ private EntityManagerFactory emf= EntityManagerFactoryProvider.getInstance().get
              entityManager = emf.createEntityManager();
              EntityTransaction transaction = entityManager.getTransaction();
              transaction.begin();
+             Beer managedBeer = entityManager.merge(beer);
+             /*
              Beer beerInPersistenceContext = entityManager.find(Beer.class, beer.getId());
              beerInPersistenceContext.setBeerName(beer.getBeerName());
              beerInPersistenceContext.setStock(beer.getStock());
              beerInPersistenceContext.setPrice(beer.getPrice());
              beerInPersistenceContext.setAlcoholPercentage(beer.getAlcoholPercentage());
+             */
+
              transaction.commit();
         }
         catch (Exception ex){
